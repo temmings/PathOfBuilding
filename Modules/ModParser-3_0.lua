@@ -808,6 +808,7 @@ local modTagList = {
 	["per poison affecting enemy"] = { tag = { type = "Multiplier", actor = "enemy", var = "PoisonStack" } },
 	["per poison affecting enemy, up to %+([%d%.]+)%%"] = function(num) return { tag = { type = "Multiplier", actor = "enemy", var = "PoisonStack", limit = num, limitTotal = true } } end,
 	["for each spider's web on the enemy"] = { tag = { type = "Multiplier", actor = "enemy", var = "Spider's WebStack" } },
+	["for each enemy you have shocked recently"] = { tag = { type = "Multiplier", var = "ShockedEnemyRecently" } },
 }
 
 local mod = modLib.createMod
