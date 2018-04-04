@@ -162,7 +162,8 @@ local PassiveTreeClass = common.NewClass("PassiveTree", function(self, targetVer
 		data.rsq = size * size
 	end
 
-	--local err, passives = PLoadModule("Data/"..targetVersion.."/Passives.lua")
+	local err, passives
+	--err, passives = PLoadModule("Data/"..targetVersion.."/Passives.lua")
 
 	ConPrintf("Processing tree...")
 	self.keystoneMap = { }

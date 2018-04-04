@@ -3,6 +3,8 @@
 -- Module: Main
 -- Main module of program.
 --
+require "strict"
+
 local launch = ...
 
 local ipairs = ipairs

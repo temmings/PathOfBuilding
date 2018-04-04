@@ -1892,7 +1892,8 @@ end
 local cache = { }
 local unsupported = { }
 local count = 0
---local foo = io.open("../unsupported.txt", "w")
+local foo
+--foo = io.open("../unsupported.txt", "w")
 --foo:close()
 return function(line, isComb)
 	if not cache[line] then
