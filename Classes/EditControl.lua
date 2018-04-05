@@ -254,7 +254,7 @@ function EditClass:Draw(viewPort)
 	if self.lineHeight then
 		local left = m_min(self.caret, self.sel or self.caret)
 		local right = m_max(self.caret, self.sel or self.caret)
-		local caretX
+		local caretX, caretY
 		SetDrawColor(self.textCol)
 		for s, line, e in (self.buf.."\n"):gmatch("()([^\n]*)\n()") do
 			textX = -self.controls.scrollBarH.offset
