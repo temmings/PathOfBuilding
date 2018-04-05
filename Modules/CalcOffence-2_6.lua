@@ -1560,7 +1560,7 @@ function calcs.offence(env, actor)
 					end
 					if globalOutput.IgniteDuration ~= 4 then
 						globalBreakdown.IgniteDuration = {
-							s_format("4.00s ^8(base duration)", durationBase)
+							s_format("4.00s ^8(base duration)")
 						}
 						if incDur ~= 0 then
 							t_insert(globalBreakdown.IgniteDuration, s_format("x %.2f ^8(increased/reduced duration)", 1 + incDur/100))
