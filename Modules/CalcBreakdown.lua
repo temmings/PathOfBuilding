@@ -149,7 +149,7 @@ function breakdown.leech(instant, instantRate, instances, pool, rate, max, dur)
 			t_insert(out, "Total leeched per instance:")
 			t_insert(out, s_format("%d ^8(size of leech destination pool)", pool))
 			t_insert(out, "x 0.02 ^8(base leech rate is 2% per second)")
-			local rateMod = calcLib.mod(modDB, skillCfg, rate)
+			local rateMod = calcLib.mod(modDB, actor.mainSkill.skillCfg, rate)
 			if rateMod ~= 1 then
 				t_insert(out, s_format("x %.2f ^8(leech rate modifier)", rateMod))
 			end
@@ -165,7 +165,7 @@ function breakdown.leech(instant, instantRate, instances, pool, rate, max, dur)
 			t_insert(out, "Rate per instance:")
 			t_insert(out, s_format("%d ^8(size of leech destination pool)", pool))
 			t_insert(out, "x 0.02 ^8(base leech rate is 2% per second)")
-			local rateMod = calcLib.mod(modDB, skillCfg, rate)
+			local rateMod = calcLib.mod(modDB, actor.mainSkill.skillCfg, rate)
 			if rateMod ~= 1 then
 				t_insert(out, s_format("x %.2f ^8(leech rate modifier)", rateMod))
 			end
