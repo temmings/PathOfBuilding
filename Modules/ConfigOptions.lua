@@ -19,6 +19,9 @@ return {
 	{ var = "conditionStationary", type = "check", label = "Are you always stationary?", ifCond = "Stationary", apply = function(val, modList, enemyModList)
 		modList:NewMod("Condition:Stationary", "FLAG", true, "Config")
 	end },
+	{ var = "multiplierSecondOfStationary", type = "count", label = "# second(s) on stationary:", ifOption = "conditionStationary", apply = function(val, modList, enemyModList)
+		modList:NewMod("Multiplier:SecondOnStationary", "BASE", val, "Config")
+	end },
 	{ var = "conditionMoving", type = "check", label = "Are you always moving?", ifCond = "Moving", apply = function(val, modList, enemyModList)
 		modList:NewMod("Condition:Moving", "FLAG", true, "Config")
 	end },
