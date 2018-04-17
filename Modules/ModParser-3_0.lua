@@ -690,6 +690,7 @@ local modTagList = {
 	["while at maximum power charges"] = { tag = { type = "StatThreshold", stat = "PowerCharges", thresholdStat = "PowerChargesMax" } },
 	["while at maximum frenzy charges"] = { tag = { type = "StatThreshold", stat = "FrenzyCharges", thresholdStat = "FrenzyChargesMax" } },
 	["while at maximum endurance charges"] = { tag = { type = "StatThreshold", stat = "EnduranceCharges", thresholdStat = "EnduranceChargesMax" } },
+	["while you have arcane surge"] = { tag = { type = "Condition", var = "GainArcaneSurge" } },
 	["while you have at least (%d+) crab barriers"] = function(num) return { tag = { type = "StatThreshold", stat = "CrabBarriers", threshold = num } } end,
 	["while you have a totem"] = { tag = { type = "Condition", var = "HaveTotem" } },
 	["while you have fortify"] = { tag = { type = "Condition", var = "Fortify" } },
@@ -973,6 +974,13 @@ local specialModList = {
 	["(%d+)%% increased damage per enemy killed by you or your totems recently"] = function(num) return { flag("Condition:CanGainPursuitOfFaith"), mod("Damage", "INC", num, { type = "Multiplier", var = "PursuitOfFaith" }) } end,
 	["you regenerate ([%d%.]+)%% of mana per second per totem"] = function(num) return { mod("ManaRegenPercent", "BASE", num, { type = "Condition", var = "HaveTotem" }, { type = "PerStat", stat = "ActiveTotemLimit" }) } end,
 	["you and your totems regenerate (%d+)%% of life per second per totem"] = function(num) return { mod("LifeRegenPercent", "BASE", num, { type = "Condition", var = "HaveTotem"}, { type = "PerStat", stat = "ActiveTotemLimit" }), mod("TotemLifeRegenPercent", "BASE", num, { type = "Condition", var = "HaveTotem"}, { type = "PerStat", stat = "ActiveTotemLimit" }) } end,
+	["gain arcane surge when you or your totems hit an enemy with a spell"] = {
+		-- obtain 'Arcane Surge Support' Lv1 effects
+		-- ***When using 'Arcane Surge Support' then these override by gem's effects***
+		mod("Damage", "MORE", 10, nil, ModFlag.Spell, { type = "Condition", var = "UsingArcaneSurgeSupport", neg = true }, { type = "Condition", var = "GainArcaneSurge" }, { type = "GlobalEffect", effectType = "Buff" }),
+		mod("Speed", "INC", 10, nil, ModFlag.Cast, { type = "Condition", var = "UsingArcaneSurgeSupport", neg = true }, { type = "Condition", var = "GainArcaneSurge" }, { type = "GlobalEffect", effectType = "Buff" }),
+		mod("ManaRegenPercent", "BASE", 0.5, nil, 0, { type = "Condition", var = "UsingArcaneSurgeSupport", neg = true }, { type = "Condition", var = "GainArcaneSurge" }, { type = "GlobalEffect", effectType = "Buff" }),
+	},
 	-- Inquisitor
 	["critical strikes ignore enemy monster elemental resistances"] = { flag("IgnoreElementalResistances", { type = "Condition", var = "CriticalStrike" }) },
 	["non%-critical strikes penetrate (%d+)%% of enemy elemental resistances"] = function(num) return { mod("ElementalPenetration", "BASE", num, { type = "Condition", var = "CriticalStrike", neg = true }) } end,
